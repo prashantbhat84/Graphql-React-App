@@ -1,0 +1,41 @@
+type Query {
+  events: [Event!]!
+  bookings: [Booking!]!
+}
+type Mutation {
+  createEvent(data: createEventInput): Event!
+  createUser(data: createUserInput): User!
+  bookEvent(eventID: ID!): Booking!
+  cancelBooking(bookingID: ID!): Event!
+}
+type Event {
+  id: ID!
+  title: String!
+  description: String!
+  price: Float!
+  date: String!
+  creator: User!
+}
+type User {
+  id: ID!
+  email: String!
+  password: String
+  createdEvents: [Event!]!
+}
+type Booking {
+  id: ID!
+  event: Event!
+  user: User!
+  createdAt: String!
+  updatedAt: String!
+}
+input createEventInput {
+  title: String!
+  description: String!
+  price: Float!
+  date: String!
+}
+input createUserInput {
+  email: String!
+  password: String!
+}
